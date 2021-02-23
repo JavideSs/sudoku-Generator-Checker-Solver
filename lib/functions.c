@@ -7,6 +7,7 @@ void create_seq_numbers_rand(int_board_t seq_to_test_rand[]){
         int_board_t pos_rand = rand()%(size-i);
         seq_to_test_rand[i] = seq_all[pos_rand];
 
+        //The number used is discarded 
         for (int_board_t j=pos_rand; j<(size-i)-1; j++)
             seq_all[j] = seq_all[j+1];
     }
@@ -73,7 +74,7 @@ bool valid_number(Board_t board[][size], Coord* coord, int_board_t number){
     return true;
 }
 
-
+//Backtracking Algorithm
 enum
 bool solve(Board_t board[][size], int_board_t seq_to_test[]){
     Coord coord_empty;
@@ -117,12 +118,15 @@ void create(Board_t board_solved[][size], Board_t board_for_user[][size]){
             number_last =  board_for_user[i][j];
             board_for_user[i][j] = 0;
             
+            //Solve in copy board as asc
             copy_board(board_test_asc, board_for_user);
             solve(board_test_asc, seq_to_test_asc);
 
+            //Solve in copy board as desc
             copy_board(board_test_desc, board_for_user);
             solve(board_test_desc, seq_to_test_desc);
         }
+    //If solved board desc != solved board asc -> more than one solution
     }while(compare_board(board_test_asc, board_test_desc));
-    board_for_user[i][j] = number_last;
+    board_for_user[i][j] = number_last; //Get last board
 }

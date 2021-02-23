@@ -56,6 +56,7 @@ void option_check(){
         for (int_board_t j=0; j<size; j++){
             Coord coord = {i,j};
 
+            //Copy of the board with the cell at 0, so as not to be invalidated by it self
             copy_board(board_aux, board_user);
             board_aux[i][j] = 0;
 
