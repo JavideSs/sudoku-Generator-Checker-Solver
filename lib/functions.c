@@ -65,8 +65,9 @@ bool valid_number(Board_t board[][size], Coord* coord, int_board_t number){
     }
     //square
     int_board_t squares = size/3;
-    for (int_board_t i=(coord->i/squares)*squares; i<squares; i++){
-        for (unsigned j=(coord->j/squares)*squares; j<squares; j++){
+    Coord coord_rel_square = {(coord->i/squares)*squares, (coord->j/squares)*squares};
+    for (int_board_t i=coord_rel_square.i; i<coord_rel_square.i+3; i++){
+        for (int_board_t j=coord_rel_square.j; j<coord_rel_square.j+3; j++){
             if (board[i][j] == number)
                 return false;
         }
@@ -82,7 +83,7 @@ bool solve(Board_t board[][size], int_board_t seq_to_test[]){
     if (!find_empty(board, &coord_empty))
         return true;
 
-    for (unsigned i=0; i<size; i++){
+    for (int_board_t i=0; i<size; i++){
         if (valid_number(board, &coord_empty, seq_to_test[i])){
             board[coord_empty.i][coord_empty.j] = seq_to_test[i];
 

@@ -3,9 +3,9 @@ A Sudoku puzzle generator, checker and solver written in C using backtracking al
 
 Use terminal as menu for input and output
 
-Tested in Windows Cmd, Windows Powershell, Bash with GCC
+Tested with GCC in Windows Cmd, Windows Powershell and Bash
 
-![screen](screen.gif)
+![screen](demo.gif)
 
 ---
 
