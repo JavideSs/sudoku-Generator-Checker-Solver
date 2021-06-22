@@ -2,8 +2,8 @@
 #include <stdlib.h> //system, srand
 #include <time.h>   //time
 
-#include "../include/interface.h"
-#include "../include/control.h"
+#include "interface.h"
+#include "control.h"
 
 int main(){
     srand(time(NULL));
@@ -33,7 +33,7 @@ int main(){
 
             case 'q':
                 break;
-                
+
             default:
                 show_bad_option();
                 break;

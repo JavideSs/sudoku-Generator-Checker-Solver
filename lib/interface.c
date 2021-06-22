@@ -1,4 +1,4 @@
-#include "../include/interface.h"
+#include "interface.h"
 
 void ansi_in_windows(){
     #if defined ENABLE_VIRTUAL_TERMINAL_PROCESSING
@@ -34,11 +34,11 @@ void show_bad_option(){
 
 
 void print_board(Board_t board[][size]){
-    for (int_board_t i=0; i<size; i++){
+    for (Board_item_t i=0; i<size; i++){
         if (i!=0 && i%3==0)
             printf("- - - - - - - - - - - -\n");
 
-        for (int_board_t j=0; j<size; j++){
+        for (Board_item_t j=0; j<size; j++){
             if (j!=0 && j%3==0)
                 printf(" |");
 
@@ -56,8 +56,8 @@ void input_board(Board_t board[][size]){
     print_board(board);
     printf("If there is no number put 0");
 
-    for (int_board_t i=0; i<size; i++){
-        for (int_board_t j=0; j<size; j++){
+    for (Board_item_t i=0; i<size; i++){
+        for (Board_item_t j=0; j<size; j++){
             printf("\033[%d;%df", 2*i-(i-1)+(i/3), 2*j+2+2*(j/3));
             scanf("%hd", &board[i][j]); getchar();
         }
@@ -69,8 +69,8 @@ void input_board(Board_t board[][size]){
 void input_board_for_user(Board_t board[][size]){
     print_board(board);
 
-    for (int_board_t i=0; i<size; i++){
-        for (int_board_t j=0; j<size; j++){
+    for (Board_item_t i=0; i<size; i++){
+        for (Board_item_t j=0; j<size; j++){
             if (board[i][j] != 0)
                 continue;
 

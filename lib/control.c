@@ -1,4 +1,4 @@
-#include "../include/control.h"
+#include "control.h"
 
 void option_create(){
     Board_t board_solved[size][size];
@@ -7,43 +7,49 @@ void option_create(){
     create(board_solved, board_for_user);
     print_board(board_for_user);
 
-    LOOP:
-    show_create_menu();
     char option;
-    scanf("%c", &option); getchar();
+    bool loop;
+    do{
+        show_create_menu();
+        scanf("%c", &option); getchar();
 
-    switch (option){
-        case '1':
-            clearTerminal;
+        switch (option){
+            case '1':
+                clearTerminal;
 
-            Board_t board_user[size][size];
-            copy_board(board_user, board_for_user);
-            input_board_for_user(board_user);
+                Board_t board_user[size][size];
+                copy_board(board_user, board_for_user);
+                input_board_for_user(board_user);
 
-            if (compare_board(board_solved, board_user)){
-                printf("Sudoku correct! :)\nPress any key to continue...");
+                if (compare_board(board_solved, board_user)){
+                    printf("Sudoku correct! :)\nPress any key to continue...");
+                    getchar();
+                    loop = false;
+                }
+                else{
+                    printf("Sudoku wrong! :(\nPress any key to try again...");
+                    getchar();
+                    loop = true;
+                }
+                break;
+
+            case '2':
+                printf("\nSOLUTION:\n");
+                print_board(board_solved);
+                printf("Press return to continue...");
                 getchar();
-            }
-            else{
-                printf("Sudoku wrong! :(\nPress any key to try again...");
-                getchar();
-                goto LOOP;
-            }
-            break;
-        case '2':
-            printf("\nSOLUTION:\n");
-            print_board(board_solved);
-            printf("Press return to continue...");
-            getchar();
-            break;
-            
-        case 'b':
-            break;
+                loop = false;
+                break;
 
-        default:
-            show_bad_option();
-            goto LOOP;
-    }
+            case 'b':
+                loop = false;
+                break;
+
+            default:
+                show_bad_option();
+                loop = true;
+        }
+    }while(loop);
 }
 
 
@@ -52,8 +58,8 @@ void option_check(){
     input_board(board_user);
     Board_t board_aux[size][size];
 
-    for (int_board_t i=0; i<size; i++){
-        for (int_board_t j=0; j<size; j++){
+    for (Board_item_t i=0; i<size; i++){
+        for (Board_item_t j=0; j<size; j++){
             Coord coord = {i,j};
 
             //Copy of the board with the cell at 0, so as not to be invalidated by it self
@@ -74,7 +80,7 @@ void option_solve(){
     Board_t board_user[size][size];
     input_board(board_user);
 
-    int_board_t seq_to_test_asc[] = seq_numbers_asc;
+    Board_item_t seq_to_test_asc[] = seq_numbers_asc;
     solve(board_user, seq_to_test_asc);
 
     printf("\nSOLUTION:\n");

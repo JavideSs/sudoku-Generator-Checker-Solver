@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "common.h"
+#include "functions.h"
 
 #if defined MSDOS || defined _WIN32 || defined _WIN64
     #include <windows.h>
@@ -13,8 +14,6 @@
     #define clearTerminal system("clear")
     #define blank_cell " ·"
 #endif
-
-#include "functions.h"
 
 void ansi_in_windows();
 
