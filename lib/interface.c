@@ -49,9 +49,9 @@ void show_bad_option(){
 }
 
 
-void get_items(Board_t board[][size], bool board_is_empty){
-    for (Board_item_t j=0; j<size; j++){
-        for (Board_item_t i=0; i<size; i++){
+void get_items(Board_t board[][BOARD_SIZE], bool board_is_empty){
+    for (Board_item_t j=0; j<BOARD_SIZE; j++){
+        for (Board_item_t i=0; i<BOARD_SIZE; i++){
             if (!board_is_empty && board[j][i] != 0)
                 continue;
 
@@ -62,7 +62,7 @@ void get_items(Board_t board[][size], bool board_is_empty){
 }
 
 
-void input_board(Board_t board[][size]){
+void input_board(Board_t board[][BOARD_SIZE]){
     create_empty_board(board);
     print_board(board);
     printf("If there is no number put 0");
@@ -73,7 +73,7 @@ void input_board(Board_t board[][size]){
 }
 
 
-void input_board_for_user(Board_t board[][size]){
+void input_board_for_user(Board_t board[][BOARD_SIZE]){
     print_board(board);
 
     get_items(board, false);
@@ -82,12 +82,12 @@ void input_board_for_user(Board_t board[][size]){
 }
 
 
-void print_board(Board_t board[][size]){
-    for (Board_item_t i=0; i<size; i++){
+void print_board(Board_t board[][BOARD_SIZE]){
+    for (Board_item_t i=0; i<BOARD_SIZE; i++){
         if (i!=0 && i%3==0)
             printf("- - - - - - - - - - - -\n");
 
-        for (Board_item_t j=0; j<size; j++){
+        for (Board_item_t j=0; j<BOARD_SIZE; j++){
             if (j!=0 && j%3==0)
                 printf(" |");
 

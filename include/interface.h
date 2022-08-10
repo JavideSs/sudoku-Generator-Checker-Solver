@@ -21,8 +21,8 @@ void show_main_menu();
 void show_create_menu();
 void show_bad_option();
 
-void print_board(Board_t[][size]);
-void input_board(Board_t[][size]);
-void input_board_for_user(Board_t[][size]);
+void print_board(Board_t[][BOARD_SIZE]);
+void input_board(Board_t[][BOARD_SIZE]);
+void input_board_for_user(Board_t[][BOARD_SIZE]);
 
 #endif

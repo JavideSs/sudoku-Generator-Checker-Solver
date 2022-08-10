@@ -12,7 +12,7 @@ OBJS 	= $(DIR_OBJ)/main.o \
 		$(DIR_OBJ)/functions.o \
 		$(DIR_OBJ)/interface.o \
 
-CFLAGS 	= -Wall -O3 -I$(DIR_INC)
+CFLAGS 	= -w -O3 -I$(DIR_INC)
 
 $(TARGET) : $(OBJS)
 	mkdir -p $(DIR_BIN)

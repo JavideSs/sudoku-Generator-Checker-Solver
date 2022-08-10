@@ -9,7 +9,8 @@ Use terminal as menu for input and output.
 
 ## How to use it
 ### Running from source code
-Tested with GCC in Windows Cmd, Windows Powershell and Bash
+Is platform independent, terminal must support ANSI.
+makefile developed for Linux.
 
 ```
 # Clone project
@@ -20,7 +21,7 @@ cd Sudoku-Generator-Checker-Solver
 make    //make clean to remove binaries
 
 # Build without make
-gcc src/main.c lib/control.c lib/functions.c lib/interface.c -o bin/sudoku
+gcc -w -O3 -Iinclude src/main.c lib/control.c lib/functions.c lib/interface.c -o bin/sudoku
 
 # Run sudoku
 ./bin/sudoku
@@ -35,4 +36,4 @@ Your feedback is most welcomed by filling a
 
 Author:  
 Javier Mellado Sánchez  
-2021
+2021-2022

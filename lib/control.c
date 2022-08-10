@@ -1,8 +1,8 @@
 #include "control.h"
 
 void option_create(){
-    Board_t board_solved[size][size];
-    Board_t board_for_user[size][size];
+    Board_t board_solved[BOARD_SIZE][BOARD_SIZE];
+    Board_t board_for_user[BOARD_SIZE][BOARD_SIZE];
 
     create(board_solved, board_for_user);
     print_board(board_for_user);
@@ -17,7 +17,7 @@ void option_create(){
             case '1':
                 clearTerminal;
 
-                Board_t board_user[size][size];
+                Board_t board_user[BOARD_SIZE][BOARD_SIZE];
                 copy_board(board_user, board_for_user);
                 input_board_for_user(board_user);
 
@@ -54,13 +54,13 @@ void option_create(){
 
 
 void option_check(){
-    Board_t board_user[size][size];
+    Board_t board_user[BOARD_SIZE][BOARD_SIZE];
     input_board(board_user);
-    Board_t board_aux[size][size];
+    Board_t board_aux[BOARD_SIZE][BOARD_SIZE];
 
-    for (Board_item_t i=0; i<size; i++){
-        for (Board_item_t j=0; j<size; j++){
-            Coord coord = {i,j};
+    for (Board_item_t i=0; i<BOARD_SIZE; i++){
+        for (Board_item_t j=0; j<BOARD_SIZE; j++){
+            Coord_t coord = {i,j};
 
             //Copy of the board with the cell at 0, so as not to be invalidated by it self
             copy_board(board_aux, board_user);
@@ -77,10 +77,10 @@ void option_check(){
 
 
 void option_solve(){
-    Board_t board_user[size][size];
+    Board_t board_user[BOARD_SIZE][BOARD_SIZE];
     input_board(board_user);
 
-    Board_item_t seq_to_test_asc[] = seq_numbers_asc;
+    Board_item_t seq_to_test_asc[] = SEQ_NUMBERS_ASC;
     solve(board_user, seq_to_test_asc);
 
     printf("\nSOLUTION:\n");
