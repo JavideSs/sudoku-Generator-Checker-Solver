@@ -1,5 +1,21 @@
 #include "interface.h"
 
+/*
+2 -> initial margin
+2*(i/3) -> extra separation in each block
+2*i -> separation between cells
+2+2*(i/3)+2*i = (8/3)*i+2
+*/
+#define column_cells_jump(i) 2+2*(i/3)+2*i
+
+/*
+1 -> initial margin
+(j/3) -> extra separation in each block
+j -> separation between cells
+1+(j/3)+j = (4/3)*j+1
+*/
+#define row_cells_jump(j) 1+(j/3)+j
+
 void ansi_in_windows(){
     #if defined ENABLE_VIRTUAL_TERMINAL_PROCESSING
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -33,6 +49,39 @@ void show_bad_option(){
 }
 
 
+void get_items(Board_t board[][size], bool board_is_empty){
+    for (Board_item_t j=0; j<size; j++){
+        for (Board_item_t i=0; i<size; i++){
+            if (!board_is_empty && board[j][i] != 0)
+                continue;
+
+            printf("\033[%d;%df", row_cells_jump(j), column_cells_jump(i));
+            if(scanf("%hd", &board[j][i]) > 0) getchar();
+        }
+    }
+}
+
+
+void input_board(Board_t board[][size]){
+    create_empty_board(board);
+    print_board(board);
+    printf("If there is no number put 0");
+
+    get_items(board, true);
+
+    printf("\n\n\n");
+}
+
+
+void input_board_for_user(Board_t board[][size]){
+    print_board(board);
+
+    get_items(board, false);
+
+    printf("\n");
+}
+
+
 void print_board(Board_t board[][size]){
     for (Board_item_t i=0; i<size; i++){
         if (i!=0 && i%3==0)
@@ -48,35 +97,4 @@ void print_board(Board_t board[][size]){
         printf("\n");
     }
     printf("______________________\n");
-}
-
-
-void input_board(Board_t board[][size]){
-    create_empty_board(board);
-    print_board(board);
-    printf("If there is no number put 0");
-
-    for (Board_item_t i=0; i<size; i++){
-        for (Board_item_t j=0; j<size; j++){
-            printf("\033[%d;%df", 2*i-(i-1)+(i/3), 2*j+2+2*(j/3));
-            scanf("%hd", &board[i][j]); getchar();
-        }
-    }
-    printf("\n\n\n");
-}
-
-
-void input_board_for_user(Board_t board[][size]){
-    print_board(board);
-
-    for (Board_item_t i=0; i<size; i++){
-        for (Board_item_t j=0; j<size; j++){
-            if (board[i][j] != 0)
-                continue;
-
-            printf("\033[%d;%df", 2*i-(i-1)+(i/3), 2*j+2+2*(j/3));
-            scanf("%hd", &board[i][j]); getchar();
-        }
-    }
-    printf("\n");
 }
