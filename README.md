@@ -8,29 +8,29 @@ Use terminal as menu for input and output.
 ---
 
 ## How to use it
-### Running from source code
 Is platform independent, terminal must support ANSI.
 makefile developed for Linux.
 
 ```
 # Clone project
-git clone https://github.com/JavideSs/Sudoku-Generator-Checker-Solver.git
-cd Sudoku-Generator-Checker-Solver
+git clone https://github.com/JavideSs/sudoku-Generator-Checker-Solver.git
+cd sudoku-generator-checker-solver
 
 # Build with make
-make    //make clean to remove binaries
+make    #make clean to remove binaries
 
 # Build without make
-gcc -w -O3 -Iinclude src/main.c lib/control.c lib/functions.c lib/interface.c -o bin/sudoku
+gcc -w -O3 -Iinclude lib/* src/main.c -o bin/sudoku
 
 # Run sudoku
 ./bin/sudoku
 ```
+
 ---
 
 ## Feedback
 Your feedback is most welcomed by filling a
-[new issue](https://github.com/JavideSs/Sudoku-Generator-Checker-Solver/issues/new).
+[new issue](https://github.com/JavideSs/sudoku-Generator-Checker-Solver/issues/new).
 
 ---
 
